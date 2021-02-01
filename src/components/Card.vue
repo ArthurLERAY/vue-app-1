@@ -21,6 +21,12 @@
             </template>
             <span>Upgrade la tâche</span>
           </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-icon @click="deleteTask" v-on="on" style="cursor: pointer;">mdi-delete</v-icon>
+            </template>
+            <span>Supprimer la tâche</span>
+          </v-tooltip>
         </v-col>
       </v-card-title>
       <v-divider></v-divider>
@@ -57,6 +63,17 @@ export default {
         desc: this.task.desc
       };
       this.nextState.push(item);
+      this.deleteTask();
+      this.dialog = false;
+    },
+    deleteTask() {
+      for (let task of this.currentState) {
+        console.log(task.id === this.task.id);
+         if (task.id === this.task.id) {
+           const index = this.currentState.indexOf(task);
+           this.currentState.splice(index, 1);
+         }
+      }
     }
   }
 }
