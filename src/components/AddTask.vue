@@ -1,7 +1,6 @@
 <template>
     <v-dialog
         v-model="dialog"
-        persistent
         max-width="600px"
     >
       <template v-slot:activator="{ on }">
@@ -57,7 +56,7 @@
 <script>
 export default {
   name: "AddTask",
-  props: ['todo', 'id'],
+  props: ['todo', 'index'],
 
   data: () => ({
     dialog: false,
@@ -71,6 +70,7 @@ export default {
         const item = {id: this.index+1, title: this.taskTitle, desc: this.taskDesc}
         this.index++;
         this.todo.push(item);
+        this.dialog = false;
       }
     }
   }

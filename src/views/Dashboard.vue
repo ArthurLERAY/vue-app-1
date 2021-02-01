@@ -10,24 +10,25 @@
       <v-col cols="3">
         <h2 style="margin-bottom: 15px;">À faire</h2>
         <div data-app>
-          <AddTask v-on:click="addTask($event.target.value)" />
+          <AddTask :todo="todo" :index="index" />
         </div>
-        <v-card v-for="card in todo" v-bind:key="card.id" tile class="inside-card">
-          <v-card-title>{{ card.title }}</v-card-title>
-          <v-card-text>{{ card.desc }}</v-card-text>
-        </v-card>
-        <v-card tile class="inside-card">
-          <v-card-title>Title</v-card-title>
-          <v-card-text>Text</v-card-text>
-        </v-card>
+        <Card v-for="task in todo" v-bind:key="task.id" :task="task" />
       </v-col>
       <v-col cols="1"></v-col>
       <v-col cols="3">
-        Test
+        <h2 style="margin-bottom: 15px;">En cours</h2>
+        <div data-app>
+          <AddTask :todo="inProgress" :index="index" />
+        </div>
+        <Card v-for="task in inProgress" v-bind:key="task.id" :task="task" />
       </v-col>
       <v-col cols="1"></v-col>
       <v-col cols="3">
-        Test
+        <h2 style="margin-bottom: 15px;">En cours</h2>
+        <div data-app>
+          <AddTask :todo="finished" :index="index" />
+        </div>
+        <Card v-for="task in finished" :isLast="true" v-bind:key="task.id" :task="task" />
       </v-col>
 
     </v-row>
@@ -36,12 +37,13 @@
 
 <script>
 import AddTask from "@/components/AddTask";
+import Card from "@/components/Card";
 export default {
   name: "Dashboard",
 
   data: () => ({
     dialog: false,
-    index: 0,
+    index: 2,
     todo: [
       {
         id: 0,
@@ -49,12 +51,25 @@ export default {
         desc: 'Exemple de description'
       }
     ],
-    inProgress: [],
-    finished: [],
+    inProgress: [
+      {
+        id: 1,
+        title: 'Exemple de titre',
+        desc: 'Exemple de description'
+      }
+    ],
+    finished: [
+      {
+        id: 2,
+        title: 'Exemple de titre',
+        desc: 'Exemple de description'
+      }
+    ],
   }),
 
   components: {
     AddTask,
+    Card,
   },
 
   methods: {
