@@ -9,7 +9,9 @@
     <v-row class="col-area text-center">
       <v-col cols="3">
         <h2 style="margin-bottom: 15px;">À faire</h2>
-
+        <div data-app>
+          <AddTask/>
+        </div>
         <v-card tile class="inside-card">
           <v-card-title>Title</v-card-title>
           <v-card-text>Text</v-card-text>
@@ -33,8 +35,17 @@
 </template>
 
 <script>
+import AddTask from "@/components/AddTask";
 export default {
-  name: "Dashboard"
+  name: "Dashboard",
+
+  data: () => ({
+    dialog: false,
+  }),
+
+  components: {
+    AddTask,
+  }
 }
 </script>
 
