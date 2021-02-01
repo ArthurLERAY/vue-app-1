@@ -4,6 +4,7 @@ body {
 }
 .title-wrapper {
     margin-top: 150px !important;
+    margin-bottom: 15px !important;
 }
 .login-card {
     padding: 40px;
@@ -20,5 +21,12 @@ body {
     text-align: center;
 }
 .col-area {
-
+    margin-top: 15px !important;
+}
+.wrapper-card {
+    padding: 10px 0 10px 0;
+}
+.inside-card {
+    margin: auto;
+    margin-top: 15px !important;
 }
