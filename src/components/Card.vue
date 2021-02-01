@@ -1,7 +1,7 @@
 <template>
   <v-dialog
       v-model="dialog"
-      max-width="600px"
+      max-width="500px"
   >
     <template v-slot:activator="{ on }">
       <v-card v-on="on" tile class="inside-card">
@@ -17,7 +17,7 @@
         <v-col cols="3">
           <v-tooltip bottom v-if="isLast !== true">
             <template v-slot:activator="{ on }">
-              <v-icon v-on="on" style="cursor: pointer;" >mdi-arrow-up-box</v-icon>
+              <v-icon @click="upgrade" v-on="on" style="cursor: pointer;">mdi-arrow-up-box</v-icon>
             </template>
             <span>Upgrade la tâche</span>
           </v-tooltip>
@@ -43,10 +43,21 @@
 export default {
   name: "Card",
 
-  props: ['task', 'isLast'],
+  props: ['task', 'isLast', 'currentState', 'nextState', 'index'],
 
   data: () => ({
     dialog: false,
   }),
+
+  methods: {
+    upgrade() {
+      const item = {
+        id: this.task.id,
+        title: this.task.title,
+        desc: this.task.desc
+      };
+      this.nextState.push(item);
+    }
+  }
 }
 </script>

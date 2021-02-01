@@ -12,7 +12,7 @@
         <div data-app>
           <AddTask :todo="todo" :index="index" />
         </div>
-        <Card v-for="task in todo" v-bind:key="task.id" :task="task" />
+        <Card v-for="task in todo" :currentState="todo" :nextState="inProgress" v-bind:key="task.id" :task="task" />
       </v-col>
       <v-col cols="1"></v-col>
       <v-col cols="3">
@@ -20,7 +20,7 @@
         <div data-app>
           <AddTask :todo="inProgress" :index="index" />
         </div>
-        <Card v-for="task in inProgress" v-bind:key="task.id" :task="task" />
+        <Card v-for="task in inProgress" :currentState="inProgress" :nextState="finished" v-bind:key="task.id" :task="task" />
       </v-col>
       <v-col cols="1"></v-col>
       <v-col cols="3">
@@ -28,7 +28,7 @@
         <div data-app>
           <AddTask :todo="finished" :index="index" />
         </div>
-        <Card v-for="task in finished" :isLast="true" v-bind:key="task.id" :task="task" />
+        <Card v-for="task in finished" :currentProgress="finished" :isLast="true" v-bind:key="task.id" :task="task" />
       </v-col>
 
     </v-row>
@@ -71,12 +71,6 @@ export default {
     AddTask,
     Card,
   },
-
-  methods: {
-    addTask(value) {
-      console.log(value);
-    }
-  }
 }
 </script>
 
