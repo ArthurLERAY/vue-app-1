@@ -10,11 +10,11 @@
       <v-col cols="3">
         <h2 style="margin-bottom: 15px;">À faire</h2>
         <div data-app>
-          <AddTask/>
+          <AddTask v-on:click="addTask($event.target.value)" />
         </div>
-        <v-card tile class="inside-card">
-          <v-card-title>Title</v-card-title>
-          <v-card-text>Text</v-card-text>
+        <v-card v-for="card in todo" v-bind:key="card.id" tile class="inside-card">
+          <v-card-title>{{ card.title }}</v-card-title>
+          <v-card-text>{{ card.desc }}</v-card-text>
         </v-card>
         <v-card tile class="inside-card">
           <v-card-title>Title</v-card-title>
@@ -41,10 +41,26 @@ export default {
 
   data: () => ({
     dialog: false,
+    index: 0,
+    todo: [
+      {
+        id: 0,
+        title: 'Exemple de titre',
+        desc: 'Exemple de description'
+      }
+    ],
+    inProgress: [],
+    finished: [],
   }),
 
   components: {
     AddTask,
+  },
+
+  methods: {
+    addTask(value) {
+      console.log(value);
+    }
   }
 }
 </script>

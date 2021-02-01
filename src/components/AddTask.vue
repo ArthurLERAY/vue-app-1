@@ -45,7 +45,7 @@
           <v-btn
               color="blue darken-1"
               text
-              @click="dialog = false"
+              @click="validate"
           >
             Sauvegarder
           </v-btn>
@@ -57,12 +57,23 @@
 <script>
 export default {
   name: "AddTask",
+  props: ['todo', 'id'],
 
   data: () => ({
     dialog: false,
     taskTitle: "",
     taskDesc: "",
   }),
+
+  methods: {
+    validate() {
+      if (this.taskTitle.length > 0 && this.taskDesc.length > 0) {
+        const item = {id: this.index+1, title: this.taskTitle, desc: this.taskDesc}
+        this.index++;
+        this.todo.push(item);
+      }
+    }
+  }
 
 }
 </script>
